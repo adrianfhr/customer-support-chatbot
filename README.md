@@ -142,6 +142,182 @@ curl -X POST http://localhost:8000/chat \
   }'
 ```
 
+## 🧪 Testing & Validation
+
+### Postman Collection Setup
+
+Kami menyediakan Postman collection komprehensif untuk testing semua aspek Customer Support Chatbot API. Collection ini mencakup 16 test scenarios yang mencakup health checks, chat conversations, session management, error handling, dan performance testing.
+
+#### Files yang Dibuat
+- `Customer_Support_Chatbot_API.postman_collection.json` - Main collection
+- `Customer_Support_Chatbot.postman_environment.json` - Environment config
+- `POSTMAN_TESTING_GUIDE.md` - Detailed guide
+- `POSTMAN_QUICK_REFERENCE.md` - Quick reference
+
+#### Quick Start (3 Steps)
+
+1. **Import ke Postman**
+   ```
+   File → Import → Select both JSON files → Import
+   ```
+
+2. **Set Environment**
+   ```
+   Top-right dropdown → Select "Customer Support Chatbot Environment"
+   ```
+
+3. **Run Tests**
+   ```
+   Right-click collection → Run collection → Run
+   ```
+
+### Test Categories
+
+| Category | Tests | Purpose |
+|----------|-------|---------|
+| 🔍 **Health & Status** | 2 | API health, documentation |
+| 💬 **Chat Conversations** | 6 | Core chatbot functionality |
+| 📝 **Session Management** | 2 | Message history |
+| 📦 **Data Management** | 1 | Seed test data |
+| ❌ **Error Handling** | 3 | Input validation |
+| ⚡ **Performance** | 2 | Load & response time |
+
+**Total: 16 comprehensive tests**
+
+### Key Test Scenarios
+
+#### ✅ Happy Path Testing
+```json
+POST /chat
+{
+  "session_id": "test-123",
+  "user_message": "Check my order ID: ORD555"
+}
+```
+
+#### ✅ Tool Calling Validation
+- **Order Status**: "Where is my order ORD123?"
+- **Product Info**: "Apa kelebihan laptop ROG Strix?"
+- **Warranty**: "Bagaimana cara klaim garansi?"
+
+#### ❌ Error Cases
+- Missing session_id → 422 error
+- Empty message → 422 error
+- Invalid JSON → 400 error
+
+### Automated Tests
+
+Setiap request dilengkapi dengan automated tests yang mengecek:
+
+#### Status Code Validation
+```javascript
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+```
+
+#### Response Structure Validation
+```javascript
+pm.test("Response has correct structure", function () {
+    const jsonData = pm.response.json();
+    pm.expect(jsonData).to.have.property('message');
+    pm.expect(jsonData).to.have.property('session_id');
+});
+```
+
+#### Business Logic Validation
+```javascript
+pm.test("Tool was called", function () {
+    const jsonData = pm.response.json();
+    pm.expect(jsonData.tool_calls).to.include('get_order_status');
+});
+```
+
+#### Performance Validation
+```javascript
+pm.test("Response time is reasonable", function () {
+    pm.expect(pm.response.responseTime).to.be.below(30000);
+});
+```
+
+### Pre-Test Checklist
+
+- [ ] Docker containers running (`docker-compose ps`)
+- [ ] All services healthy (app, db, ollama)
+- [ ] Port 8000 accessible (`curl localhost:8000/healthz`)
+- [ ] Environment selected in Postman
+- [ ] Test data seeded (run "Seed Test Orders" first)
+
+### Expected Test Results
+
+#### ✅ Successful Scenarios
+- Health Check: ✅ Status 200, response structure valid
+- Chat Greeting: ✅ Status 200, Indonesian fallback response
+- Order Query (Valid): ✅ Status 200, tool called, order info returned
+- Product Query: ✅ Status 200, tool called, product response
+- Warranty Query: ✅ Status 200, tool called, detailed policy returned
+- Session Messages: ✅ Status 200, message history retrieved
+
+#### ❌ Error Scenarios
+- Missing Session ID: ❌ Status 422, validation error
+- Missing Message: ❌ Status 422, validation error
+- Empty Message: ❌ Status 422, validation error
+
+#### ⚡ Performance Expectations
+- Normal requests: < 15 seconds
+- Long messages: < 30 seconds
+- Order lookups: < 10 seconds
+
+### Advanced Usage
+
+#### Collection Runner Settings
+- **Iterations**: 1 (normal), 5+ (stress test)
+- **Delay**: 100ms between requests
+- **Data file**: Use for bulk testing
+- **Environment**: Always use provided environment
+
+#### Variables Available
+- `{{base_url}}` - API base URL
+- `{{session_id}}` - Auto-generated unique session
+- `{{$randomInt}}` - Random number generator
+
+### Quick Fixes
+
+#### Connection Issues
+```bash
+cd /path/to/project
+docker-compose down
+docker-compose up -d
+```
+
+#### Slow Responses
+```bash
+docker-compose logs app --tail=20
+# Check for errors, restart if needed
+```
+
+#### Test Failures
+1. Check environment is selected
+2. Verify base_url is correct
+3. Run "Health Check" first
+4. Seed test data if needed
+
+### Emergency Commands
+
+```bash
+# Restart everything
+docker-compose restart
+
+# Check logs
+docker-compose logs app
+
+# Test manually
+curl http://localhost:8000/healthz
+
+# Check API docs
+curl http://localhost:8000/docs
+```
+
 ## 🛠️ API Endpoints
 
 ### POST /chat
