@@ -160,7 +160,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"session_id\": \"{{session_id}}\",\n  \"user_message\": \"Dimana order saya? order ID: ORD123456\"\n}"
+							"raw": "{\n  \"session_id\": \"{{session_id}}\",\n  \"user_message\": \"Dimana order saya? order ID: ORD123\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/chat",
@@ -707,7 +707,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n  \"session_id\": \"rapid-test-{{$randomInt}}\",\n  \"user_message\": \"Pertanyaan singkat {{$randomInt}}: Di mana pesanan saya ORD123456?\"\n}"
+							"raw": "{\n  \"session_id\": \"rapid-test-{{$randomInt}}\",\n  \"user_message\": \"Pertanyaan singkat {{$randomInt}}: Di mana pesanan saya ORD123?\"\n}"
 						},
 						"url": {
 							"raw": "{{base_url}}/chat",
