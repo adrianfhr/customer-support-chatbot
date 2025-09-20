@@ -142,7 +142,7 @@ curl -X POST http://localhost:8000/chat \
   }'
 ```
 
-## 🧪 Testing & Validation
+## Testing & Validation
 
 ### Postman Collection Setup
 
@@ -258,7 +258,7 @@ pm.test("Response time is reasonable", function () {
 - Missing Message: Status 422, validation error
 - Empty Message: Status 422, validation error
 
-#### ⚡ Performance Expectations
+#### Performance Expectations
 - Normal requests: < 15 seconds
 - Long messages: < 30 seconds
 - Order lookups: < 10 seconds
@@ -620,7 +620,7 @@ MAX_RESPONSE_WORDS=180
 
 ---
 
-## 📋 Quick Reference
+## Quick Reference
 
 ### Essential Commands
 ```bash
