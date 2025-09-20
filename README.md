@@ -47,7 +47,7 @@ docker compose ps
 # Semua services harus UP
 ```
 
-## 📁 Struktur Project
+## Struktur Project
 
 ```
 customer-support-chatbot/
@@ -78,7 +78,7 @@ customer-support-chatbot/
     └── test_chat_api.py   # Comprehensive tests
 ```
 
-## 🎯 Fitur Utama
+## Fitur Utama
 
 ### Intents yang Didukung
 
@@ -99,7 +99,7 @@ customer-support-chatbot/
 - Context aware conversations
 - Persistent history di PostgreSQL
 
-## 💬 Contoh Interaksi
+## Contoh Interaksi
 
 ### 1. Cek Status Pesanan
 ```bash
@@ -265,16 +265,16 @@ Menambah data demo untuk testing dan development.
 - **Schema DDL**: `db/schema.sql` (PostgreSQL compatible)
 - **Sample Data**: `db/seed.sql` (demo orders, products, policies)
 
-## 🧰 Tech Stack
+## Tech Stack
 
 ### Core Dependencies
-- **Python 3.11**: Base language
-- **FastAPI 0.104.x**: REST API framework
-- **LangChain 0.0.340+**: LLM orchestration
+- **Python**: Base language
+- **FastAPI**: REST API framework
+- **LangChain**: LLM orchestration
 - **langchain-community**: Ollama integration
-- **SQLAlchemy 2.0+**: ORM & database
+- **SQLAlchemy**: ORM & database
 - **psycopg2-binary + asyncpg**: PostgreSQL adapters (sync/async)
-- **Pydantic v2**: Data validation
+- **Pydantic**: Data validation
 - **Uvicorn**: ASGI server
 - **structlog**: Structured logging
 
@@ -391,20 +391,6 @@ Structured JSON logs untuk production monitoring.
 - Cold start: 10-15s (first request)
 - Memory usage: ~2GB (Ollama model)
 
-## Roadmap
-
-### Near Term
-- [ ] Streaming responses
-- [ ] Multi-turn tool sequences
-- [ ] Sentiment analysis
-- [ ] Performance monitoring
-
-### Future
-- [ ] Vector search (RAG)
-- [ ] Multi-language support
-- [ ] Voice interface
-- [ ] Integration with real order systems
-- [ ] Analytics dashboard
 
 ## Development
 
@@ -503,11 +489,11 @@ docker compose exec db psql -U app -d chatbot
 ### Key Features
 - 3-exchange conversation memory
 - Indonesian language support
-- ✅ Tool calling for data lookups
-- ✅ PostgreSQL persistence
-- ✅ Docker containerization
-- ✅ Comprehensive testing
-- ✅ Structured logging
+- Tool calling for data lookups
+- PostgreSQL persistence
+- Docker containerization
+- Comprehensive testing
+- Structured logging
 
-**🎯 Tim & Support**: Untuk pertanyaan teknis atau bug reports, silakan buat issue di repository atau hubungi tim development.
-# customer-support-chatbot
+**Tim & Support**: Untuk pertanyaan teknis atau bug reports, silakan buat issue di repository atau hubungi tim development.
+
