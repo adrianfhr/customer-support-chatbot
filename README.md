@@ -148,11 +148,6 @@ curl -X POST http://localhost:8000/chat \
 
 Kami menyediakan Postman collection komprehensif untuk testing semua aspek Customer Support Chatbot API. Collection ini mencakup 16 test scenarios yang mencakup health checks, chat conversations, session management, error handling, dan performance testing.
 
-#### Files yang Dibuat
-- `Customer_Support_Chatbot_API.postman_collection.json` - Main collection
-- `Customer_Support_Chatbot.postman_environment.json` - Environment config
-- `POSTMAN_TESTING_GUIDE.md` - Detailed guide
-- `POSTMAN_QUICK_REFERENCE.md` - Quick reference
 
 #### Quick Start (3 Steps)
 
@@ -175,18 +170,18 @@ Kami menyediakan Postman collection komprehensif untuk testing semua aspek Custo
 
 | Category | Tests | Purpose |
 |----------|-------|---------|
-| 🔍 **Health & Status** | 2 | API health, documentation |
-| 💬 **Chat Conversations** | 6 | Core chatbot functionality |
-| 📝 **Session Management** | 2 | Message history |
-| 📦 **Data Management** | 1 | Seed test data |
-| ❌ **Error Handling** | 3 | Input validation |
-| ⚡ **Performance** | 2 | Load & response time |
+| **Health & Status** | 2 | API health, documentation |
+| **Chat Conversations** | 6 | Core chatbot functionality |
+| **Session Management** | 2 | Message history |
+| **Data Management** | 1 | Seed test data |
+| **Error Handling** | 3 | Input validation |
+| **Performance** | 2 | Load & response time |
 
 **Total: 16 comprehensive tests**
 
 ### Key Test Scenarios
 
-#### ✅ Happy Path Testing
+#### Happy Path Testing
 ```json
 POST /chat
 {
@@ -195,12 +190,12 @@ POST /chat
 }
 ```
 
-#### ✅ Tool Calling Validation
+#### Tool Calling Validation
 - **Order Status**: "Where is my order ORD123?"
 - **Product Info**: "Apa kelebihan laptop ROG Strix?"
 - **Warranty**: "Bagaimana cara klaim garansi?"
 
-#### ❌ Error Cases
+#### Error Cases
 - Missing session_id → 422 error
 - Empty message → 422 error
 - Invalid JSON → 400 error
@@ -250,18 +245,18 @@ pm.test("Response time is reasonable", function () {
 
 ### Expected Test Results
 
-#### ✅ Successful Scenarios
-- Health Check: ✅ Status 200, response structure valid
-- Chat Greeting: ✅ Status 200, Indonesian fallback response
-- Order Query (Valid): ✅ Status 200, tool called, order info returned
-- Product Query: ✅ Status 200, tool called, product response
-- Warranty Query: ✅ Status 200, tool called, detailed policy returned
-- Session Messages: ✅ Status 200, message history retrieved
+#### Successful Scenarios
+- Health Check: Status 200, response structure valid
+- Chat Greeting: Status 200, Indonesian fallback response
+- Order Query (Valid): Status 200, tool called, order info returned
+- Product Query: Status 200, tool called, product response
+- Warranty Query: Status 200, tool called, detailed policy returned
+- Session Messages: Status 200, message history retrieved
 
-#### ❌ Error Scenarios
-- Missing Session ID: ❌ Status 422, validation error
-- Missing Message: ❌ Status 422, validation error
-- Empty Message: ❌ Status 422, validation error
+#### Error Scenarios
+- Missing Session ID: Status 422, validation error
+- Missing Message: Status 422, validation error
+- Empty Message: Status 422, validation error
 
 #### ⚡ Performance Expectations
 - Normal requests: < 15 seconds
@@ -318,7 +313,7 @@ curl http://localhost:8000/healthz
 curl http://localhost:8000/docs
 ```
 
-## 🛠️ API Endpoints
+##  API Endpoints
 
 ### POST /chat
 Mengirim pesan ke chatbot.
